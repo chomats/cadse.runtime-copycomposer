@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: CADSE CopyComposer Plug-in
+Bundle-SymbolicName: CopyComposer.CADSE
+Bundle-Version: 1.0.0.dev-version
+Bundle-Vendor: ADELE team
+Bundle-Localization: plugin
+Import-Package: fede.workspace.eclipse,
+ fede.workspace.eclipse.composition,
+ fede.workspace.eclipse.java,
+ fede.workspace.tool.eclipse,
+ org.eclipse.core.resources,
+ org.eclipse.core.runtime,
+ org.eclipse.core.runtime.jobs,
+ org.eclipse.jdt.core
+Export-Package: fede.workspace.eclipse.composition.copy.composer,
+ fede.workspace.eclipse.composition.copy.exporter
+
