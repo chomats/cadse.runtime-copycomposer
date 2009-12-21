@@ -30,7 +30,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 
 import fr.imag.adele.cadse.core.CadseException;
-import fr.imag.adele.cadse.core.CompactUUID;
+import java.util.UUID;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.Link;
 import fr.imag.adele.cadse.core.build.IBuildingContext;
@@ -228,7 +228,7 @@ public class FolderExportedContent implements IDeltaSetter, IPathable {
 		return _item.getDisplayName();
 	}
 
-	public CompactUUID getItemIdentification() {
+	public UUID getItemIdentification() {
 		return _item.getId();
 	}
 

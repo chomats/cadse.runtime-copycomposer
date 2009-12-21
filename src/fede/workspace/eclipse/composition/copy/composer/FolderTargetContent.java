@@ -33,7 +33,7 @@ import org.eclipse.core.runtime.Path;
 import fede.workspace.eclipse.composition.CompositeBuildingContext;
 import fede.workspace.eclipse.composition.copy.exporter.FolderExportedContent;
 import fr.imag.adele.cadse.core.CadseException;
-import fr.imag.adele.cadse.core.CompactUUID;
+import java.util.UUID;
 import fr.imag.adele.cadse.core.LogicalWorkspace;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.build.IBuildingContext;
@@ -42,13 +42,13 @@ public class FolderTargetContent extends FolderExportedContent implements ITarge
 
 	private static final long			serialVersionUID	= -6786362507675970304L;
 
-	private CompactUUID					_itemId;
+	private UUID					_itemId;
 
-	private CompactUUID					_addedItemId;
+	private UUID					_addedItemId;
 
-	private CompactUUID					_updatedItemId;
+	private UUID					_updatedItemId;
 
-	private CompactUUID					_removedItemId;
+	private UUID					_removedItemId;
 
 	private transient LogicalWorkspace	_model;
 

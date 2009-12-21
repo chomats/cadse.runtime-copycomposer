@@ -21,7 +21,7 @@ package fede.workspace.eclipse.composition.copy.exporter;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 
-import fr.imag.adele.cadse.core.CompactUUID;
+import java.util.UUID;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.Link;
 import fr.imag.adele.cadse.core.build.IBuildingContext;
@@ -154,7 +154,7 @@ public class FileExportedContent implements IDeltaSetter, IPathable {
 		return _item.getDisplayName();
 	}
 
-	public CompactUUID getItemIdentification() {
+	public UUID getItemIdentification() {
 		return _item.getId();
 	}
 
