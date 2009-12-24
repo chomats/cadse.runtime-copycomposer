@@ -18,7 +18,7 @@
  */
 package fede.workspace.eclipse.composition.copy.composer;
 
-import fr.imag.adele.cadse.core.ContentItem;
+import fr.imag.adele.cadse.core.content.ContentItem;
 import fede.workspace.eclipse.composition.copy.exporter.JavaClassRefExporter;
 
 public class JavaSourcesCopyComposer extends SourcesCopyComposer {

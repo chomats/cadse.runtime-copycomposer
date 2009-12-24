@@ -29,7 +29,7 @@ import org.eclipse.jdt.core.JavaModelException;
 
 import fede.workspace.eclipse.composition.copy.exporter.JavaClassRefExporter;
 import fede.workspace.eclipse.java.JavaProjectManager;
-import fr.imag.adele.cadse.core.ContentItem;
+import fr.imag.adele.cadse.core.content.ContentItem;
 import fr.imag.adele.cadse.core.build.IBuildingContext;
 import fr.imag.adele.cadse.core.build.IExportedContent;
 import fr.imag.adele.cadse.core.build.IExporterTarget;

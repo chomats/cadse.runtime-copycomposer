@@ -44,7 +44,7 @@ import fede.workspace.eclipse.composition.copy.exporter.IDeltaSetter;
 import fede.workspace.eclipse.composition.copy.exporter.IPathable;
 import fede.workspace.tool.eclipse.MappingManager;
 import fr.imag.adele.cadse.core.CadseException;
-import fr.imag.adele.cadse.core.ContentItem;
+import fr.imag.adele.cadse.core.content.ContentItem;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.Link;
 import fr.imag.adele.cadse.core.build.Composer;
