@@ -23,7 +23,7 @@ import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 
-import fr.imag.adele.cadse.core.ContentItem;
+import fr.imag.adele.cadse.core.content.ContentItem;
 import fr.imag.adele.cadse.core.build.Exporter;
 import fr.imag.adele.cadse.core.build.IBuildingContext;
 import fr.imag.adele.cadse.core.build.IExportedContent;

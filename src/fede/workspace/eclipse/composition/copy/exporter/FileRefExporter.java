@@ -37,7 +37,7 @@ import org.eclipse.core.runtime.Path;
 
 import fede.workspace.eclipse.composition.copy.composer.FileUtil;
 import fede.workspace.tool.eclipse.MappingManager;
-import fr.imag.adele.cadse.core.ContentItem;
+import fr.imag.adele.cadse.core.content.ContentItem;
 import fr.imag.adele.cadse.core.build.IExportedContent;
 import fr.imag.adele.cadse.core.build.IExporterTarget;
 import fr.imag.adele.cadse.core.var.ContextVariable;
@@ -133,7 +133,7 @@ public class FileRefExporter extends ProjectExporter {
 		}
 
 		if (pattern != null) {
-			Pattern p = Pattern.compile(pattern.compute(ContextVariable.DEFAULT, getItem()));
+			Pattern p = Pattern.compile(pattern.compute(ContextVariableImpl.DEFAULT, getItem()));
 			matcher = p.matcher("");
 		} else {
 			matcher = null;
@@ -310,7 +310,7 @@ public class FileRefExporter extends ProjectExporter {
 			return null;
 		}
 		if (path != null) {
-			String value = path.compute(ContextVariable.DEFAULT, getItem());
+			String value = path.compute(ContextVariableImpl.DEFAULT, getItem());
 			if (value == null) {
 				value = "";
 			}

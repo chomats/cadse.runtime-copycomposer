@@ -21,7 +21,7 @@ package fede.workspace.eclipse.composition.copy.composer;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 
-import fr.imag.adele.cadse.core.ContentItem;
+import fr.imag.adele.cadse.core.content.ContentItem;
 
 public class JavaCopyComposer extends CopyIntoFolderComposer {
 
