@@ -138,7 +138,7 @@ public class FolderExporterTarget implements ICompositeDescExporterTarget {
 		return _targetParentContainer;
 	}
 
-	public List<IExportedContent> getRepositoryComponents(String exporterType) throws CadseException {
+	public List<IExportedContent> getRepositoryComponents(Class exporterType) throws CadseException {
 		try {
 			return getRepository(exporterType).getExistingContents();
 		} catch (CoreException e) {
@@ -146,9 +146,9 @@ public class FolderExporterTarget implements ICompositeDescExporterTarget {
 		}
 	}
 
-	public IRepository getRepository(String exporterType) throws CoreException {
+	public IRepository getRepository(Class exporterType) throws CoreException {
 
-		IFolder repoFolder = getGlobalRepoFolder().getFolder(exporterType);
+		IFolder repoFolder = getGlobalRepoFolder().getFolder(exporterType.getSimpleName());
 
 		return new FilesystemRepository(repoFolder);
 	}

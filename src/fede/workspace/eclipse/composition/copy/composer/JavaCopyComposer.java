@@ -30,7 +30,7 @@ public class JavaCopyComposer extends CopyIntoFolderComposer {
 
 	private String				_targetPath;
 
-	public JavaCopyComposer(ContentItem contentManager, String exporterTypes, String targetPath) {
+	public JavaCopyComposer(ContentItem contentManager, Class exporterTypes, String targetPath) {
 		super(contentManager, exporterTypes, exporterTypes);
 		this._targetPath = targetPath;
 	}

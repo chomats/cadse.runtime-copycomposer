@@ -80,7 +80,7 @@ public class FolderTargetContent extends FolderExportedContent implements ITarge
 	 *            removed flag
 	 * @param targetFolder
 	 */
-	public FolderTargetContent(Item item, String exporterType, IPath folderPath, boolean added, boolean updated,
+	public FolderTargetContent(Item item, Class exporterType, IPath folderPath, boolean added, boolean updated,
 			boolean removed, String target) {
 		super(item, exporterType, folderPath, added, updated, removed);
 		if (added) {

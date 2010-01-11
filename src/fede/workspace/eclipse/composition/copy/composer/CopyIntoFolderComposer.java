@@ -100,13 +100,13 @@ public abstract class CopyIntoFolderComposer extends Composer {
 	 * @param exporterTypes
 	 *            the exporter types managed by this composer.
 	 */
-	public CopyIntoFolderComposer(ContentItem contentManager, String name, String... exporterTypes) {
+	public CopyIntoFolderComposer(ContentItem contentManager, String name, Class... exporterTypes) {
 		super(contentManager, exporterTypes);
 		this._name = name;
 	}
 
 	@Override
-	protected boolean getFullExport(Link l, String exporterType) {
+	protected boolean getFullExport(Link l, Class exporterType) {
 		try {
 			return !((FolderExporterTarget) getCurrentTarget()).getRepository(exporterType).contains(l);
 		} catch (CoreException e) {
@@ -162,7 +162,7 @@ public abstract class CopyIntoFolderComposer extends Composer {
 	}
 
 	@Override
-	protected void garbageCollect(IBuildingContext context, String exporterType, IExporterTarget target) {
+	protected void garbageCollect(IBuildingContext context, Class exporterType, IExporterTarget target) {
 		// do nothing ; garbage collection is done at the end of the composition
 	}
 
@@ -179,7 +179,7 @@ public abstract class CopyIntoFolderComposer extends Composer {
 				}
 			}
 		});
-		for (String exporterType : getExporterTypes()) {
+		for (Class exporterType : getExporterTypes()) {
 			try {
 				IRepository repository = _currentBuildTarget.getRepository(exporterType);
 				repository.clean(context);
@@ -221,7 +221,7 @@ public abstract class CopyIntoFolderComposer extends Composer {
 
 		// save links
 		try {
-			for (String t : this.getExporterTypes()) {
+			for (Class t : this.getExporterTypes()) {
 				IRepository repository = _currentBuildTarget.getRepository(t);
 				repository.beginSaveLinks();
 				for (IExportedContent exportedContent : listExportedContent) {
@@ -324,7 +324,7 @@ public abstract class CopyIntoFolderComposer extends Composer {
 		}
 
 		// Copy all files of temporary directory into the new target folder
-		for (String exporterType : getExporterTypes()) {
+		for (Class exporterType : getExporterTypes()) {
 			try {
 				Scanner tempTargetScannner = new Scanner(_currentBuildTarget.getRepository(exporterType));
 				tempTargetScannner.scan(_currentBuildTarget.getTemporaryFolder(),
@@ -349,7 +349,7 @@ public abstract class CopyIntoFolderComposer extends Composer {
 		// Copy files and folders which have been added or modified by this
 		// composer in a temporary directory
 		IFolder tempFold = _currentBuildTarget.createTemporaryFolder();
-		for (String exporterType : getExporterTypes()) {
+		for (Class exporterType : getExporterTypes()) {
 			try {
 				Scanner oldTargetScannner = new Scanner(_currentBuildTarget.getRepository(exporterType));
 				oldTargetScannner.scan(_currentBuildTarget.getLastTargetFolder(), tempFold, false);
@@ -363,7 +363,7 @@ public abstract class CopyIntoFolderComposer extends Composer {
 		// added by this composer
 		try {
 			Set<IRepository> repositories = new HashSet<IRepository>();
-			for (String exporterType : getExporterTypes()) {
+			for (Class exporterType : getExporterTypes()) {
 				repositories.add(_currentBuildTarget.getRepository(exporterType));
 			}
 
@@ -820,7 +820,7 @@ public abstract class CopyIntoFolderComposer extends Composer {
 
 	private ITargetContent constructTargetContFrom(IDeltaSetter deltaContent, String targetFolder) {
 		Item item = deltaContent.getItem();
-		String exporterType = deltaContent.getExporterType();
+		Class exporterType = deltaContent.getExporterType();
 		boolean added = deltaContent.isAdded();
 		boolean updated = deltaContent.isUpdated();
 		boolean removed = deltaContent.isRemoved();
@@ -866,7 +866,7 @@ public abstract class CopyIntoFolderComposer extends Composer {
 	}
 
 	private void garbageCollect(IBuildingContext context, GarbageCollectJob job) {
-		for (String exporterType : getExporterTypes()) {
+		for (Class exporterType : getExporterTypes()) {
 			try {
 				IRepository repository = _currentBuildTarget.getRepository(exporterType);
 				List<ITargetContent> repositoryContents = repository.getTargetContents();
