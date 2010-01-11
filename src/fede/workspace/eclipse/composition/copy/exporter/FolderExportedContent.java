@@ -50,7 +50,7 @@ public class FolderExportedContent implements IDeltaSetter, IPathable {
 
 	protected transient Item							_item;
 
-	private String										_exporterType;
+	private Class										_exporterType;
 
 	private String										_targetFolder;
 
@@ -84,7 +84,7 @@ public class FolderExportedContent implements IDeltaSetter, IPathable {
 	 * @param removed
 	 *            removed flag
 	 */
-	public FolderExportedContent(Item item, String exporterType, IPath folderPath, boolean added, boolean updated,
+	public FolderExportedContent(Item item, Class exporterType, IPath folderPath, boolean added, boolean updated,
 			boolean removed) {
 		this(item, exporterType, folderPath);
 
@@ -120,7 +120,7 @@ public class FolderExportedContent implements IDeltaSetter, IPathable {
 	 *            the exported contents which represents the members of the
 	 *            represented folder
 	 */
-	public FolderExportedContent(Item item, String exporterType, IPath folderPath, boolean added, boolean updated,
+	public FolderExportedContent(Item item, Class exporterType, IPath folderPath, boolean added, boolean updated,
 			boolean removed, IExportedContent[] exportedContents) {
 		this(item, exporterType, folderPath, added, updated, removed);
 
@@ -147,7 +147,7 @@ public class FolderExportedContent implements IDeltaSetter, IPathable {
 	 * @param folderPath
 	 *            relative path
 	 */
-	public FolderExportedContent(Item item, String exporterType, IPath folderPath) {
+	public FolderExportedContent(Item item, Class exporterType, IPath folderPath) {
 		this(item, exporterType);
 
 		this._folderPath = folderPath;
@@ -161,7 +161,7 @@ public class FolderExportedContent implements IDeltaSetter, IPathable {
 	 * @param exporterType
 	 *            the exporter type related to this file
 	 */
-	public FolderExportedContent(Item item, String exporterType) {
+	public FolderExportedContent(Item item, Class exporterType) {
 		this();
 
 		this._item = item;
@@ -216,7 +216,7 @@ public class FolderExportedContent implements IDeltaSetter, IPathable {
 		return _exportedContentList.toArray(new IExportedContent[_exportedContentList.size()]);
 	}
 
-	public String getExporterType() {
+	public Class getExporterType() {
 		return _exporterType;
 	}
 

@@ -48,13 +48,21 @@ import fede.workspace.eclipse.java.JavaProjectManager;
  *
  */
 public class JavaClassRefExporter extends ProjectExporter {
-
+	public static class RefClasses {
+		
+	}
+	public static class RefSource {
+		
+	}
+	public static class RefAJ {
+		
+	}
 	/**
 	 * Exporter type which represents references of compiled java class files.
 	 */
-	public final static String JAVA_REF_EXPORTER_TYPE = "ref-classes";
-	public final static String JAVA_SOURCE_FILE_REF_EXPORTER_TYPE = "ref-source-java";
-	public final static String AJ_SOURCE_FILE_REF_EXPORTER_TYPE = "ref-source-aj";
+	public final static Class JAVA_REF_EXPORTER_TYPE = RefClasses.class;
+	public final static Class JAVA_SOURCE_FILE_REF_EXPORTER_TYPE = RefSource.class;
+	public final static Class AJ_SOURCE_FILE_REF_EXPORTER_TYPE = RefAJ.class;
 	protected boolean ajExport;
 	protected boolean sourceExport;
 	
@@ -83,7 +91,7 @@ public class JavaClassRefExporter extends ProjectExporter {
 	 * @throws CoreException   In case of error which cancel the build process
 	 */
 	@Override
-	protected IExportedContent exportItem(IProject componentProject, IResourceDelta projectDelta, IProgressMonitor monitor, String exporterType, IExporterTarget target, boolean fullExport) throws CoreException {
+	protected IExportedContent exportItem(IProject componentProject, IResourceDelta projectDelta, IProgressMonitor monitor, Class exporterType, IExporterTarget target, boolean fullExport) throws CoreException {
 
 		/*
 		 * Verify this item is actually hosted in a Java Project
@@ -124,7 +132,7 @@ public class JavaClassRefExporter extends ProjectExporter {
 	}
 
 
-	protected Map<IPath, FolderExportedContent> findLocations(FolderExportedContent folderContent, String exporterType) throws JavaModelException, CoreException {
+	protected Map<IPath, FolderExportedContent> findLocations(FolderExportedContent folderContent, Class exporterType) throws JavaModelException, CoreException {
 		IJavaProject javaProject = JavaProjectManager.getJavaProject(getItem());
 		
 		Map<IPath, FolderExportedContent> outputLocations = new HashMap<IPath, FolderExportedContent>();

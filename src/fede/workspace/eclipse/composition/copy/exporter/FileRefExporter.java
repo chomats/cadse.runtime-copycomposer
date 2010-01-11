@@ -41,6 +41,7 @@ import fr.imag.adele.cadse.core.content.ContentItem;
 import fr.imag.adele.cadse.core.build.IExportedContent;
 import fr.imag.adele.cadse.core.build.IExporterTarget;
 import fr.imag.adele.cadse.core.var.ContextVariable;
+import fr.imag.adele.cadse.core.var.ContextVariableImpl;
 import fr.imag.adele.cadse.core.var.Variable;
 import fr.imag.adele.fede.workspace.si.view.View;
 
@@ -52,14 +53,16 @@ import fr.imag.adele.fede.workspace.si.view.View;
  * 
  */
 public class FileRefExporter extends ProjectExporter {
-
+	static public class RefFiles {
+		
+	}
 	private static final String	REPO_FILE_NAME					= "repo.properties";
 	private static final String	LAST_EXPORTED_FOLDER_PROP_NAME	= "lastExportedFolder";
 
 	/**
 	 * Exporter type which represents references of files and folders.
 	 */
-	public final static String	FILE_REF_EXPORTER_TYPE			= "ref-files";
+	public final static Class	FILE_REF_EXPORTER_TYPE			= RefFiles.class;
 	private Variable			path;
 	private Variable			pattern;
 	private Matcher				matcher;
@@ -70,7 +73,7 @@ public class FileRefExporter extends ProjectExporter {
 	 * @param cm
 	 *            the related content manager
 	 */
-	public FileRefExporter(ContentItem cm, Variable path, Variable pattern, String... exporterTypes) {
+	public FileRefExporter(ContentItem cm, Variable path, Variable pattern, Class... exporterTypes) {
 		super(cm, exporterTypes);
 		this.path = path;
 		this.pattern = pattern;
@@ -122,7 +125,7 @@ public class FileRefExporter extends ProjectExporter {
 	 */
 	@Override
 	protected IExportedContent exportItem(IProject componentProject, IResourceDelta projectDelta,
-			IProgressMonitor monitor, String exporterType, IExporterTarget target, boolean fullExport)
+			IProgressMonitor monitor, Class exporterType, IExporterTarget target, boolean fullExport)
 			throws CoreException {
 
 		/*
@@ -222,7 +225,7 @@ public class FileRefExporter extends ProjectExporter {
 	 *             if an error happens during loading of the exporter
 	 *             repository.
 	 */
-	private void setLastExportedFolder(IContainer exportedFolder, IProject componentProject, String exporterType)
+	private void setLastExportedFolder(IContainer exportedFolder, IProject componentProject, Class exporterType)
 			throws CoreException {
 
 		IFolder repoFolder = getRepoFolder(componentProject, exporterType);
@@ -250,7 +253,7 @@ public class FileRefExporter extends ProjectExporter {
 	 *             if an error happens during loading of the exporter
 	 *             repository.
 	 */
-	public IFolder getLastExportedFolder(IProject componentProject, String exporterType) throws CoreException {
+	public IFolder getLastExportedFolder(IProject componentProject, Class exporterType) throws CoreException {
 
 		IFolder repoFolder = getRepoFolder(componentProject, exporterType);
 
@@ -288,9 +291,9 @@ public class FileRefExporter extends ProjectExporter {
 	 * 
 	 * @return the folder which contain the exporter repository datas.
 	 */
-	private IFolder getRepoFolder(IProject componentProject, String exporterType) throws CoreException {
+	private IFolder getRepoFolder(IProject componentProject, Class exporterType) throws CoreException {
 		IFolder repoFolder = componentProject.getFolder("." + FileRefExporter.class.getName()).getFolder(
-				getItem().getId().toString()).getFolder(exporterType);
+				getItem().getId().toString()).getFolder(exporterType.getSimpleName());
 
 		if (!repoFolder.exists()) {
 			MappingManager.createFolder(repoFolder, View.getDefaultMonitor());
@@ -305,7 +308,7 @@ public class FileRefExporter extends ProjectExporter {
 	 * @return the folder which is exposed to the composers.
 	 */
 	protected IContainer getExportedFolder() {
-		IContainer container = getContentItem().getMainMappingContent(IContainer.class);
+		IContainer container = getItem().getMainMappingContent(IContainer.class);
 		if (container == null) {
 			return null;
 		}

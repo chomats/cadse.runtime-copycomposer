@@ -82,7 +82,7 @@ public class FileTargetContent extends FileExportedContent implements ITargetCon
 	 *            removed flag
 	 * @param targetFolder
 	 */
-	public FileTargetContent(IPath relativePath, IFile file, Item item, String exporterType, boolean added,
+	public FileTargetContent(IPath relativePath, IFile file, Item item, Class exporterType, boolean added,
 			boolean updated, boolean removed, String target) {
 		super(relativePath, file, item, exporterType, added, updated, removed);
 
