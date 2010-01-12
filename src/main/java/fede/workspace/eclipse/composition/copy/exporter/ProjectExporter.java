@@ -34,12 +34,12 @@ import fede.workspace.eclipse.composition.CompositeBuildingContext;
 
 public abstract class ProjectExporter extends Exporter {
 
-	protected ProjectExporter(ContentItem contentManager, Class... exporterTypes) {
+	protected ProjectExporter(ContentItem contentManager, String... exporterTypes) {
 		super(contentManager, exporterTypes);
 	}
 
 	@Override
-	public IExportedContent exportItem(IBuildingContext context, IExporterTarget target, Class exporterType,
+	public IExportedContent exportItem(IBuildingContext context, IExporterTarget target, String exporterType,
 			boolean fullExport) {
 
 		IProgressMonitor monitor = ((CompositeBuildingContext) context).getMonitor();
@@ -107,6 +107,6 @@ public abstract class ProjectExporter extends Exporter {
 	// }
 
 	protected abstract IExportedContent exportItem(IProject componentProject, IResourceDelta componentUpdate,
-			IProgressMonitor monitor, Class exporterType, IExporterTarget target, boolean fullExport)
+			IProgressMonitor monitor, String exporterType, IExporterTarget target, boolean fullExport)
 			throws CoreException;
 }

@@ -43,7 +43,7 @@ public class FileExportedContent implements IDeltaSetter, IPathable {
 
 	protected transient Item	_item;
 
-	private Class				_exporterType;
+	private String				_exporterType;
 
 	protected transient IFile	_file;
 
@@ -73,7 +73,7 @@ public class FileExportedContent implements IDeltaSetter, IPathable {
 	 * @param removed
 	 *            removed flag
 	 */
-	public FileExportedContent(IPath relativePath, IFile file, Item item, Class exporterType, boolean added,
+	public FileExportedContent(IPath relativePath, IFile file, Item item, String exporterType, boolean added,
 			boolean updated, boolean removed) {
 
 		if ((file == null) || (item == null) || (exporterType == null) || (relativePath == null)) {
@@ -142,7 +142,7 @@ public class FileExportedContent implements IDeltaSetter, IPathable {
 		return null;
 	}
 
-	public Class getExporterType() {
+	public String getExporterType() {
 		return _exporterType;
 	}
 

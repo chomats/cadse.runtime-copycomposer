@@ -28,7 +28,7 @@ import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
 
-import fr.imag.adele.cadse.core.content.ContentItem;
+import fr.imag.adele.cadse.core.ContentItem;
 import fr.imag.adele.cadse.core.build.IBuildingContext;
 import fr.imag.adele.cadse.core.build.IExportedContent;
 import fr.imag.adele.cadse.core.build.IExporterTarget;
@@ -40,13 +40,13 @@ public class SourcesCopyComposer extends JavaCopyComposer {
 	private boolean createSourceEntry;
 
 
-	public SourcesCopyComposer(ContentItem contentManager, Class type, boolean createSourceEntry, String targetPath) {
+	public SourcesCopyComposer(ContentItem contentManager, String type, boolean createSourceEntry, String targetPath) {
 		super(contentManager, type, targetPath);
 		this.createSourceEntry = createSourceEntry;
 	}
 
 
-	public SourcesCopyComposer(ContentItem contentManager, Class type, boolean createSourceEntry) {
+	public SourcesCopyComposer(ContentItem contentManager, String type, boolean createSourceEntry) {
 		this(contentManager, type, createSourceEntry, COMPONENTS_SOURCES);
 	}
 	
