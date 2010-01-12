@@ -24,21 +24,23 @@ import java.io.ObjectOutputStream;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 
 import fede.workspace.eclipse.composition.CompositeBuildingContext;
-import fede.workspace.eclipse.composition.copy.exporter.FileExportedContent;
+import fede.workspace.eclipse.composition.copy.exporter.FolderExportedContent;
 import fr.imag.adele.cadse.core.CadseException;
 import java.util.UUID;
 import fr.imag.adele.cadse.core.LogicalWorkspace;
 import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.build.IBuildingContext;
 
-public class FileTargetContent extends FileExportedContent implements ITargetContent {
+public class FolderTargetContent extends FolderExportedContent implements ITargetContent {
 
-	private static final long			serialVersionUID	= -5290458375498583370L;
+	private static final long			serialVersionUID	= -6786362507675970304L;
 
 	private UUID					_itemId;
 
@@ -56,24 +58,20 @@ public class FileTargetContent extends FileExportedContent implements ITargetCon
 
 	private boolean						_lastOpIsAdd;
 
-	private String						_target;
-
-	private FileTargetContent() {
+	private FolderTargetContent() {
 		super();
 		// used by serialization mechanism
 	}
 
 	/**
-	 * Create a FileTargetContent.
+	 * Create a FolderTargetContent without any member.
 	 * 
-	 * @param relativePath
-	 *            relative path
-	 * @param file
-	 *            the represented file
 	 * @param item
 	 *            item associated to the represented file
 	 * @param exporterType
 	 *            the exporter type related to this file
+	 * @param folderPath
+	 *            relative path
 	 * @param added
 	 *            added flag
 	 * @param updated
@@ -82,12 +80,9 @@ public class FileTargetContent extends FileExportedContent implements ITargetCon
 	 *            removed flag
 	 * @param targetFolder
 	 */
-	public FileTargetContent(IPath relativePath, IFile file, Item item, Class exporterType, boolean added,
-			boolean updated, boolean removed, String target) {
-		super(relativePath, file, item, exporterType, added, updated, removed);
-
-		_itemId = item.getId();
-
+	public FolderTargetContent(Item item, String exporterType, IPath folderPath, boolean added, boolean updated,
+			boolean removed, String target) {
+		super(item, exporterType, folderPath, added, updated, removed);
 		if (added) {
 			setAddedBy(item);
 		}
@@ -124,16 +119,6 @@ public class FileTargetContent extends FileExportedContent implements ITargetCon
 		return _model.getItem(_updatedItemId);
 	}
 
-	private void writeObject(ObjectOutputStream out) throws IOException {
-		out.defaultWriteObject();
-		out.writeObject(_relativePath.toPortableString());
-	}
-
-	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-		in.defaultReadObject();
-		_relativePath = Path.fromPortableString((String) in.readObject());
-	}
-
 	public void setModel(LogicalWorkspace model) {
 		this._model = model;
 		this._item = model.getItem(_itemId);
@@ -141,26 +126,67 @@ public class FileTargetContent extends FileExportedContent implements ITargetCon
 
 	public void deleteTargetContent(IBuildingContext context, IContainer targetFolder, IRepository repository)
 			throws CadseException {
-		context.subTask("deleting packaged item " + getPath()); // getFile() can
-		// be null
+		context.subTask("deleting packaged item " + getPath());
+
+		// remove it only if there is no file.
+		IFolder folderToRem = getFolder(targetFolder);
 		try {
-			getFile(targetFolder).delete(true, false, ((CompositeBuildingContext) context).getMonitor());
+			if (containsNoFile(folderToRem, targetFolder, repository)) {
+				folderToRem.delete(true, false, ((CompositeBuildingContext) context).getMonitor());
+			}
 		} catch (CoreException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 		context.worked(1);
 	}
 
+	private static boolean containsNoFile(IFolder folderToRem, IContainer targetFolder, IRepository repository) {
+
+		if (!folderToRem.exists()) {
+			return false;
+		}
+
+		IResource[] resources = null;
+		try {
+			resources = folderToRem.members(false);
+		} catch (CoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false; // considers that potentially existing files
+		}
+
+		for (IResource resource : resources) {
+			if (resource instanceof IFile) {
+				IFile file = (IFile) resource;
+
+				ITargetContent targetContent = repository.getTargetContent(
+						PathUtil.getRelativePath(targetFolder, file), false);
+				if ((targetContent == null) || (targetContent.addedBy() == null)) {
+					return false;
+				}
+
+			} else if (resource instanceof IFolder) {
+				IFolder subFolder = (IFolder) resource;
+
+				if (!containsNoFile(subFolder, targetFolder, repository)) {
+					return false;
+				}
+			}
+		}
+
+		return true;
+	}
+
 	/**
-	 * Return the represented file.
+	 * Return the represented folder.
 	 * 
 	 * @param targetFolder
-	 * @return the represented file.
+	 * @return the represented folder.
 	 */
-	private IFile getFile(IContainer targetFolder) {
-
-		return targetFolder.getFile(getPath());
+	private IFolder getFolder(IContainer targetFolder) {
+		return targetFolder.getFolder(getPath());
 	}
 
 	public void setAddedBy(Item item) {
@@ -178,11 +204,22 @@ public class FileTargetContent extends FileExportedContent implements ITargetCon
 		_updatedItemId = item.getId();
 	}
 
+	private void writeObject(ObjectOutputStream out) throws IOException {
+		out.defaultWriteObject();
+		out.writeObject(_folderPath.toPortableString());
+	}
+
+	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+		in.defaultReadObject();
+		_folderPath = Path.fromPortableString((String) in.readObject());
+	}
+
 	public String getTarget() {
-		return _target;
+		return getTargetFolder();
 	}
 
 	public void setTarget(String target) {
-		_target = (target);
+		setTargetFolder(target);
 	}
+
 }
