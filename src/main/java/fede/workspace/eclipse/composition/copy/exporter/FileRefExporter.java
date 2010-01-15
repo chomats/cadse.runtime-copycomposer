@@ -37,7 +37,8 @@ import org.eclipse.core.runtime.Path;
 
 import fede.workspace.eclipse.composition.copy.composer.FileUtil;
 import fede.workspace.tool.eclipse.MappingManager;
-import fr.imag.adele.cadse.core.ContentItem;
+import fr.imag.adele.cadse.core.Item;
+import fr.imag.adele.cadse.core.content.ContentItem;
 import fr.imag.adele.cadse.core.build.IExportedContent;
 import fr.imag.adele.cadse.core.build.IExporterTarget;
 import fr.imag.adele.cadse.core.var.ContextVariable;
@@ -71,7 +72,7 @@ public class FileRefExporter extends ProjectExporter {
 	 * @param cm
 	 *            the related content manager
 	 */
-	public FileRefExporter(ContentItem cm, Variable path, Variable pattern, String... exporterTypes) {
+	public FileRefExporter(Item cm, Variable path, Variable pattern, String... exporterTypes) {
 		super(cm, exporterTypes);
 		this.path = path;
 		this.pattern = pattern;

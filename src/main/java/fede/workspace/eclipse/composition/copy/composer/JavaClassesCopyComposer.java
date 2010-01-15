@@ -29,7 +29,7 @@ import org.eclipse.jdt.core.JavaModelException;
 
 import fede.workspace.eclipse.composition.copy.exporter.JavaClassRefExporter;
 import fede.workspace.eclipse.java.JavaProjectManager;
-import fr.imag.adele.cadse.core.ContentItem;
+import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.build.IBuildingContext;
 import fr.imag.adele.cadse.core.build.IExportedContent;
 import fr.imag.adele.cadse.core.build.IExporterTarget;
@@ -37,16 +37,16 @@ import fr.imag.adele.cadse.core.build.IExporterTarget;
 public class JavaClassesCopyComposer extends JavaCopyComposer {
 	String	_srcPath;
 
-	public JavaClassesCopyComposer(ContentItem contentManager, String targetPath, String srcPath) {
+	public JavaClassesCopyComposer(Item contentManager, String targetPath, String srcPath) {
 		super(contentManager, JavaClassRefExporter.JAVA_REF_EXPORTER_TYPE, targetPath);
 		_srcPath = srcPath;
 	}
 
-	public JavaClassesCopyComposer(ContentItem contentManager, String targetPath) {
+	public JavaClassesCopyComposer(Item contentManager, String targetPath) {
 		this(contentManager, targetPath, COMPONENTS_SOURCES);
 	}
 
-	public JavaClassesCopyComposer(ContentItem contentManager) {
+	public JavaClassesCopyComposer(Item contentManager) {
 		this(contentManager, COMPONENTS_CLASSES, COMPONENTS_SOURCES);
 	}
 

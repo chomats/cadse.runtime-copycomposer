@@ -100,7 +100,7 @@ public abstract class CopyIntoFolderComposer extends Composer {
 	 * @param exporterTypes
 	 *            the exporter types managed by this composer.
 	 */
-	public CopyIntoFolderComposer(ContentItem contentManager, String name, String... exporterTypes) {
+	public CopyIntoFolderComposer(Item contentManager, String name, String... exporterTypes) {
 		super(contentManager, exporterTypes);
 		this._name = name;
 	}

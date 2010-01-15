@@ -23,6 +23,7 @@ import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 
+import fr.imag.adele.cadse.core.Item;
 import fr.imag.adele.cadse.core.content.ContentItem;
 import fr.imag.adele.cadse.core.build.Exporter;
 import fr.imag.adele.cadse.core.build.IBuildingContext;
@@ -34,7 +35,7 @@ import fede.workspace.eclipse.composition.CompositeBuildingContext;
 
 public abstract class ProjectExporter extends Exporter {
 
-	protected ProjectExporter(ContentItem contentManager, String... exporterTypes) {
+	protected ProjectExporter(Item contentManager, String... exporterTypes) {
 		super(contentManager, exporterTypes);
 	}
 
