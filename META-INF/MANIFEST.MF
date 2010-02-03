@@ -1,24 +1,57 @@
 Manifest-Version: 1.0
+Export-Package: fede.workspace.eclipse.composition.copy.composer;version="2.3.0";
+  uses:="fr.imag.adele.cadse.core,
+   fr.imag.adele.cadse.core.content,
+   fr.imag.adele.cadse.core.build,
+   org.eclipse.core.resources,
+   org.eclipse.core.runtime,
+   fr.imag.adele.fede.workspace.si.view,
+   fede.workspace.tool.eclipse,
+   fede.workspace.eclipse.composition.copy.exporter,
+   fede.workspace.eclipse.composition,
+   fr.imag.adele.cadse.core.impl,
+   org.eclipse.jdt.core,
+   fede.workspace.eclipse.java",
+ fede.workspace.eclipse.composition.copy.exporter;version="2.3.0";
+  uses:="org.eclipse.core.runtime,
+   fr.imag.adele.cadse.core.build,
+   fr.imag.adele.cadse.core,
+   org.eclipse.core.resources,
+   fede.workspace.eclipse.composition.copy.composer,
+   fr.imag.adele.cadse.core.var,
+   fr.imag.adele.cadse.core.content,
+   fr.imag.adele.fede.workspace.si.view,
+   fede.workspace.tool.eclipse,
+   org.eclipse.jdt.core,
+   fede.workspace.eclipse.java,
+   fede.workspace.eclipse.composition,
+   fede.workspace.eclipse"
+Private-Package: .
+Built-By: chomats
+Tool: Bnd-0.0.357
+Bundle-Name: CopyComposer.CADSE
+Created-By: Apache Maven Bundle Plugin
+Bundle-Vendor: Adele/LIG/ Grenoble University
+Build-Jdk: 1.6.0_17
+Bundle-Version: 2.3.0.SNAPSHOT
 Bundle-ManifestVersion: 2
-Bundle-Name: CADSE CopyComposer Plug-in
-Bundle-SymbolicName: CopyComposer.CADSE
-Bundle-Version: 2.2.1.qualifier
-Bundle-Vendor: ADELE team
-Bundle-Localization: plugin
-Import-Package: fede.workspace.eclipse,
- fede.workspace.eclipse.composition,
- fede.workspace.eclipse.java,
- fede.workspace.tool.eclipse,
- fr.imag.adele.cadse.core;version="2.2.1",
- fr.imag.adele.cadse.core.build;version="2.2.1",
- fr.imag.adele.cadse.core.content;version="2.3.0",
- fr.imag.adele.cadse.core.impl;version="2.2.1",
- fr.imag.adele.cadse.core.var;version="2.2.1",
- fr.imag.adele.fede.workspace.si.view;version="2.2.1",
+Bundle-Activator: fr.imag.adele.cadse.cadseg.Activator
+Import-Package: fede.workspace.eclipse;version="2.3",
+ fede.workspace.eclipse.composition;version="2.3",
+ fede.workspace.eclipse.composition.copy.composer;version="2.3",
+ fede.workspace.eclipse.composition.copy.exporter;version="2.3",
+ fede.workspace.eclipse.java;version="2.3",
+ fede.workspace.tool.eclipse;version="2.3",
+ fr.imag.adele.cadse.cadseg,
+ fr.imag.adele.cadse.core;version="2.3",
+ fr.imag.adele.cadse.core.build;version="2.3",
+ fr.imag.adele.cadse.core.content;version="2.3",
+ fr.imag.adele.cadse.core.impl;version="2.3",
+ fr.imag.adele.cadse.core.var;version="2.3",
+ fr.imag.adele.fede.workspace.si.view;version="2.3",
  org.eclipse.core.resources,
- org.eclipse.core.runtime,
- org.eclipse.core.runtime.jobs,
+ org.eclipse.core.runtime;version="3.4",
  org.eclipse.jdt.core
-Export-Package: fede.workspace.eclipse.composition.copy.composer,
- fede.workspace.eclipse.composition.copy.exporter
+Bundle-SymbolicName: CopyComposer.CADSE;singleton:=true
+Bundle-DocURL: http://www-adele.imag.fr/
 
