@@ -14,13 +14,13 @@ Export-Package: fede.workspace.eclipse.composition.copy.exporter;uses:
  imag.adele.cadse.core.impl,org.eclipse.jdt.core,fede.workspace.eclips
  e.java";version="2.3.0"
 Private-Package: .
-Built-By: chomats
+Built-By: etienne
 Tool: Bnd-0.0.357
 Bundle-Name: CopyComposer.CADSE
 Created-By: Apache Maven Bundle Plugin
 Bundle-Vendor: Adele/LIG/ Grenoble University, France
-Build-Jdk: 1.6.0_17
-Bundle-Version: 2.3.0.SNAPSHOT
+Build-Jdk: 1.6.0_0
+Bundle-Version: 2.3.0.SNAPSHOT-201002121709
 Bundle-ManifestVersion: 2
 Bundle-Activator: fr.imag.adele.cadse.cadseg.Activator
 Import-Package: fede.workspace.eclipse;version="2.3",fede.workspace.ec
