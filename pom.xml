@@ -24,9 +24,7 @@
 						<Include-Resource>
 							build.properties=build.properties
 			            </Include-Resource>
-						<Bundle-Activator>fr.imag.adele.cadse.cadseg.Activator</Bundle-Activator>
 						<Import-Package>org.eclipse.core.runtime;registry=!,javax.xml.bind*;version=!, *</Import-Package>
-						<Bundle-Activator>fr.imag.adele.cadse.cadseg.Activator</Bundle-Activator>
 					</instructions>
 				</configuration>
 			</plugin>
