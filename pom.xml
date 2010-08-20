@@ -1,9 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>fr.imag.adele.cadse</groupId>
-  <artifactId>CopyComposer.CADSE</artifactId>
+  <artifactId>model.runtime.copycomposer</artifactId>
   <packaging>bundle</packaging>
-  <name>CopyComposer.CADSE</name>
+  <name>fr.imag.adele.cadse.model.runtime.copycomposer</name>
   <version>2.3.2-SNAPSHOT</version>
   <parent>
   	<artifactId>fr.imag.adele.cadse.parent.osgi</artifactId>
@@ -46,7 +46,7 @@
   	<dependency>
   		<groupId>fr.imag.adele.cadse</groupId>
   		<artifactId>si.java</artifactId>
-  		<version>2.3.1</version>
+  		<version>2.3.2-SNAPSHOT</version>
   	</dependency>
   	<dependency>
   		<groupId>fr.imag.adele.cadse</groupId>
